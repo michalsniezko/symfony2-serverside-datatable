@@ -1,0 +1,60 @@
+{% extends 'CommonBundle::layout.html.twig' %}
+
+{% set pagecontent = block('pagecontent') %}
+{% block sidebar %}
+    {% include 'FelixAppBundle:_partials:sidebar.html.twig' %}
+{% endblock %}
+{% set sidebarcontent =  block('sidebar') %}
+
+{% block title %}Actors{% endblock %}
+
+{% block stylesheets_pagelevel %}
+    {#{% stylesheets filter='cssrewrite'#}
+    {#'bundles/app/css/work.css' %}#}
+    {#<link rel="stylesheet" href="{{ asset_url }}"/>#}
+    {#{% endstylesheets %}#}
+{% endblock %}
+
+{% block pagecontent %}
+
+    <table class="table table-striped table-bordered table-hover" id="objects_list">
+        <thead>
+        <tr role="row" class="heading">
+            <th>
+                Id#
+            </th>
+            <th >
+                Name
+            </th>
+            <th>
+                Surname
+            </th>
+            <th>
+                not a database column
+            </th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+{% endblock %}
+
+{% block javascripts_pagelevel %}
+    <script type="text/javascript">
+        var target_route = 'api_get{{ entity_plural }}list';
+    </script>
+    {% javascripts
+    'bundles/common/assets/global/plugins/select2/js/select2.min.js'
+    'bundles/common/assets/global/plugins/datatables/jquery.dataTables.min.js'
+
+    'bundles/common/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js'
+    'bundles/common/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js'
+    'bundles/common/assets/global/scripts/app.js'
+    'bundles/felixapp/js/workrelatedlist.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
